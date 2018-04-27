@@ -11,6 +11,7 @@ library(shiny)
 library(shinydashboard)
 library(plotly)
 library(ggplot2)
+library(DT)
 
 
 # Define UI for application that draws a histogram
@@ -34,14 +35,26 @@ dashboardPage(
     tabItems(
       tabItem(tabName = "intro",
               "To be replaced with full introduction"),
+      
       tabItem(tabName = "twod",
-              "To be replaced with 2d plots and graphs"),
+              fluidRow(
+                box(plotlyOutput("boxplot"), height = 450),
+                box(plotOutput("densityplot"), height = 450)
+              )),
+      
       tabItem(tabName = "threed",
-              "To be replaced with 3d plotly graph"),
+              fluidPage(
+                box(plotlyOutput("threeDscatter"), 
+                height = 750, width = 12)
+              )),
+      
       tabItem(tabName = "stats",
               "To be replaced with some statistical analysis"),
+      
       tabItem(tabName = "table",
-              "To be replaced with the table of the dataset")
+              fluidRow(
+                box(DT::dataTableOutput("table"),
+                    width = 12)))
     )
   )
 )
