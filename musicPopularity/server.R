@@ -34,7 +34,7 @@ shinyServer(function(input, output) {
   
   output$threeDscatter <- renderPlotly({
     plot_ly(subset_all_music, x = ~get(input$scatter_var1), y = ~get(input$scatter_var2), z = ~popularity,
-            color = ~genre, size = ~popularity, key = ~full_name, height = 650,
+            color = ~genre, key = ~full_name, height = 650, marker = list(size = 4),
             text = ~paste('Artist:', artist_name, '<br>Song:', song_name, '<br>Popularity:', popularity)) %>%
       add_markers() %>%
       layout(scene = list(zaxis = list(title = 'Popularity'),
