@@ -3,7 +3,8 @@ library(dplyr)
 
 all_music <- fread('./all_music_attributes.csv')
 all_music = select(all_music, c(-1, -2, -3, -17, -19, -24)) # getting rid of unneeded columns
-all_music$genre = as.factor(all_music$genre)
+all_music$genre = as.factor(all_music$genre) # setting the genres as factor to help with plotting categories
+all_music$duration_s = all_music$duration_ms / 1000 # new column for song length in seconds, easier to read
 
 # creating a random sample from each genre so that the 3d plot won't look very noisy - 
 metal_sub = all_music %>% filter(genre == 'metal') %>% sample_n(size = 50)
