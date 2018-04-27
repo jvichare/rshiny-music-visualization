@@ -27,7 +27,7 @@ dashboardPage(
       menuItem("Introduction to Dataset", tabName = "intro", icon = icon("user")),
       menuItem("2D Plots and Graphs", tabName = "twod", icon = icon("clone")),
       menuItem("3D Graph", tabName = "threed", icon = icon("circle")),
-      menuItem("Statistical Analysis", tabName = "stats", icon = icon("calculator")),
+      menuItem("Threshold Values", tabName = "stats", icon = icon("calculator")),
       menuItem("Dataset", tabName = "table", icon = icon("database"))
     )
   ),
@@ -40,16 +40,35 @@ dashboardPage(
               fluidRow(
                 box(plotlyOutput("boxplot"), height = 450),
                 box(plotOutput("densityplot"), height = 450)
+              ),
+              fluidRow(
+                selectizeInput(inputId = "plot_var",
+                               label = "Select Variable to Display",
+                               choices = choice,
+                               selected = 'popularity'),
+                align = 'center'
               )),
       
       tabItem(tabName = "threed",
-              fluidPage(
-                box(plotlyOutput("threeDscatter"), 
-                height = 750, width = 12)
+              fluidRow(
+                box(plotlyOutput("threeDscatter"), height = 680, width = 8),
+                box(selectizeInput(inputId = "scatter_var1",
+                                   label = "Select X -axis Variable",
+                                   choices = choice,
+                                   selected = "danceability"), width = 4),
+                box(selectizeInput(inputId = "scatter_var2",
+                                   label = "Select Y-axis Variable",
+                                   choices = choice,
+                                   selected = "acousticness"), width = 4)),
+              fluidRow(
+                box(verbatimTextOutput("click"))
               )),
       
       tabItem(tabName = "stats",
-              "To be replaced with some statistical analysis"),
+              fluidRow(
+                box(DT::dataTableOutput("threshold"),
+                    width = 12)
+              )),
       
       tabItem(tabName = "table",
               fluidRow(
