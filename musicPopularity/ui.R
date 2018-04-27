@@ -26,7 +26,7 @@ dashboardPage(skin = "green",
     sidebarUserPanel("Josh Vichare",
                      image = "https://i.imgur.com/FqDKSj6.jpg"),
     sidebarMenu(
-      menuItem("Introduction to Dataset", tabName = "intro", icon = icon("user")),
+      menuItem("Introduction to Dataset", tabName = "intro", icon = icon("question-circle")),
       menuItem("2D Plots and Graphs", tabName = "twod", icon = icon("clone")),
       menuItem("3D Graph", tabName = "threed", icon = icon("circle")),
       menuItem("Threshold Values", tabName = "stats", icon = icon("calculator")),
@@ -67,14 +67,13 @@ dashboardPage(skin = "green",
       
       tabItem(tabName = "stats",
               fluidRow(
-                box(DT::dataTableOutput("threshold"),
-                    width = 12)
+                box(DT::dataTableOutput("threshold"), width = 12,
+                    collapsible = T, collapsed = F)
               )),
       
       tabItem(tabName = "table",
               fluidRow(
-                box(DT::dataTableOutput("table"),
-                    width = 12)))
+                box(DT::dataTableOutput("table"), width = 12)))
     )
   )
 )
