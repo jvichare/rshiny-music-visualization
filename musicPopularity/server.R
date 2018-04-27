@@ -22,15 +22,14 @@ shinyServer(function(input, output) {
   
   output$boxplot <- renderPlotly({
     plot_ly(all_music, y = ~get(input$plot_var), color = ~genre, type = "box") %>% 
-      layout(yaxis = list(title = ""))
+      layout(yaxis = list(title = input$plot_var))
   })
   
   output$densityplot <- renderPlot({
     ggplot(data = all_music, aes_string(input$plot_var)) +
       geom_density(size = 0.75, alpha = 0.1, aes(fill = genre, color = genre)) +
       theme_bw() +
-      labs(x = "",
-           y = "")
+      labs(x = input$plot_var, y = "")
   })
   
   output$threeDscatter <- renderPlotly({
@@ -46,7 +45,7 @@ shinyServer(function(input, output) {
   
   output$click <- renderPrint({
     d <- event_data("plotly_click")
-    if (is.null(d)) "Click to save the song information" else d
+    if (is.null(d)) "Click to display the song information" else d
   })
   
   output$table <- DT::renderDataTable({

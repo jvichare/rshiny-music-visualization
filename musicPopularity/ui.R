@@ -15,12 +15,14 @@ library(DT)
 
 
 # Define UI for application that draws a histogram
-dashboardPage(
+dashboardPage(skin = "green",
   
   dashboardHeader(
-    title = 'Title: TBD'
+    title = 'Spotify Popularity Analysis',
+    titleWidth = 300
   ),
   dashboardSidebar(
+    width = 300,
     sidebarUserPanel("Josh Vichare",
                      image = "https://i.imgur.com/FqDKSj6.jpg"),
     sidebarMenu(
@@ -42,26 +44,25 @@ dashboardPage(
                 box(plotOutput("densityplot"), height = 450)
               ),
               fluidRow(
-                selectizeInput(inputId = "plot_var",
-                               label = "Select Variable to Display",
-                               choices = choice,
-                               selected = 'popularity'),
-                align = 'center'
-              )),
+                selectizeInput(inputId = "plot_var", 
+                                   label = "Select Variable to Display", 
+                                   choices = options, 
+                                   selected = 'popularity'), align = 'center')
+              ),
       
       tabItem(tabName = "threed",
               fluidRow(
                 box(plotlyOutput("threeDscatter"), height = 680, width = 8),
                 box(selectizeInput(inputId = "scatter_var1",
-                                   label = "Select X -axis Variable",
-                                   choices = choice,
-                                   selected = "danceability"), width = 4),
-                box(selectizeInput(inputId = "scatter_var2",
+                                   label = "Select X-axis Variable",
+                                   choices = options,
+                                   selected = "danceability"),
+                    selectizeInput(inputId = "scatter_var2",
                                    label = "Select Y-axis Variable",
-                                   choices = choice,
+                                   choices = options,
                                    selected = "acousticness"), width = 4)),
               fluidRow(
-                box(verbatimTextOutput("click"))
+                box(verbatimTextOutput("click"), width = 8)
               )),
       
       tabItem(tabName = "stats",
