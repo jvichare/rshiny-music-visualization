@@ -8,31 +8,40 @@
 #
 
 library(shiny)
+library(shinydashboard)
 library(plotly)
-library(dplyr)
-library(data.table)
 library(ggplot2)
-library(plotly)
+
 
 # Define UI for application that draws a histogram
-shinyUI(fluidPage(
+dashboardPage(
   
-    # Application title
-    titlePanel("Old Faithful Geyser Data"),
-    
-    # Sidebar with a slider input for number of bins 
-    sidebarLayout(
-        sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
-        ),
-        
-        # Show a plot of the generated distribution
-        mainPanel(
-            plotOutput("distPlot")
-        )
+  dashboardHeader(
+    title = 'Title: TBD'
+  ),
+  dashboardSidebar(
+    sidebarUserPanel("Josh Vichare",
+                     image = "https://i.imgur.com/FqDKSj6.jpg"),
+    sidebarMenu(
+      menuItem("Introduction to Dataset", tabName = "intro", icon = icon("user")),
+      menuItem("2D Plots and Graphs", tabName = "twod", icon = icon("clone")),
+      menuItem("3D Graph", tabName = "threed", icon = icon("circle")),
+      menuItem("Statistical Analysis", tabName = "stats", icon = icon("calculator")),
+      menuItem("Dataset", tabName = "table", icon = icon("database"))
     )
-))
+  ),
+  dashboardBody(
+    tabItems(
+      tabItem(tabName = "intro",
+              "To be replaced with full introduction"),
+      tabItem(tabName = "twod",
+              "To be replaced with 2d plots and graphs"),
+      tabItem(tabName = "threed",
+              "To be replaced with 3d plotly graph"),
+      tabItem(tabName = "stats",
+              "To be replaced with some statistical analysis"),
+      tabItem(tabName = "table",
+              "To be replaced with the table of the dataset")
+    )
+  )
+)
