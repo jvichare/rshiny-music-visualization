@@ -34,7 +34,7 @@ dashboardPage(skin = "green",
                 box(status = "success",
                   plotlyOutput("boxplot"), height = 450),
                 box(status = "success",
-                  plotOutput("densityplot"), height = 450)
+                  plotlyOutput("densityplot"), height = 450)
               ),
               fluidRow(
                 selectizeInput(inputId = "plot_var", 

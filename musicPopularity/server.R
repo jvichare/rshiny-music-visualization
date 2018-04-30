@@ -18,11 +18,13 @@ shinyServer(function(input, output) {
   })
   
   # ggplot density plot with user input for the axis variable
-  output$densityplot <- renderPlot({
-    ggplot(data = all_music, aes_string(input$plot_var)) +
-      geom_density(size = 0.75, alpha = 0.1, aes(fill = genre, color = genre)) +
-      theme_bw() +
-      labs(x = input$plot_var, y = "")
+  output$densityplot <- renderPlotly({
+    dens = ggplot(data = all_music, aes_string(input$plot_var)) + 
+      geom_density(alpha = 0.3, aes(fill = genre, color = genre)) + 
+      xlab(lab = input$plot_var) + 
+      theme(legend.title=element_blank())
+    
+    ggplotly(dens)
   })
   
   # plotly 3d scatter plot, taking user input for the x and y-axis, keeping z-axis fixed on popularity
