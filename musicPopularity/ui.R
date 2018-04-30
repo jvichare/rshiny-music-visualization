@@ -62,7 +62,7 @@ dashboardPage(skin = "green",
                 box(title = "Correlation with Popularity",
                     status = "primary",
                     DT::dataTableOutput('corr_tbl'), width = 4,
-                    collapsible = T, collapsed = F)),
+                    collapsible = T, collapsed = T)),
               
               fluidRow(
                 box(status = "primary", 
