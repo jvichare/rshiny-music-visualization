@@ -31,8 +31,10 @@ dashboardPage(skin = "green",
       
       tabItem(tabName = "twod",
               fluidRow(
-                box(plotlyOutput("boxplot"), height = 450),
-                box(plotOutput("densityplot"), height = 450)
+                box(status = "success",
+                  plotlyOutput("boxplot"), height = 450),
+                box(status = "success",
+                  plotOutput("densityplot"), height = 450)
               ),
               fluidRow(
                 selectizeInput(inputId = "plot_var", 
@@ -43,30 +45,41 @@ dashboardPage(skin = "green",
       
       tabItem(tabName = "threed",
               fluidRow(
-                box(plotlyOutput("threeDscatter"), height = 680, width = 8),
+                box(status = "success",
+                  plotlyOutput("threeDscatter"), height = 680, width = 8),
                 
                 # box allowing for user-input for the scatter plot with defaults set
-                box(selectizeInput(inputId = "scatter_var1",
+                box(status = "primary",
+                  selectizeInput(inputId = "scatter_var1",
                                    label = "Select X-axis Variable",
                                    choices = options,
                                    selected = "danceability"),
                     selectizeInput(inputId = "scatter_var2",
                                    label = "Select Y-axis Variable",
                                    choices = options,
-                                   selected = "acousticness"), width = 4)),
+                                   selected = "acousticness"), width = 4),
+                
+                box(title = "Correlation with Popularity",
+                    status = "primary",
+                    DT::dataTableOutput('corr_tbl'), width = 4,
+                    collapsible = T, collapsed = F)),
+              
               fluidRow(
-                box(verbatimTextOutput("click"), width = 8)
+                box(status = "primary", 
+                    verbatimTextOutput("click"), width = 8)
               )),
       
       tabItem(tabName = "stats",
               fluidRow(
-                box(DT::dataTableOutput("threshold"), width = 12,
+                box(status = "primary",
+                  DT::dataTableOutput("threshold"), width = 12,
                     collapsible = T, collapsed = F)
               )),
       
       tabItem(tabName = "table",
               fluidRow(
-                box(DT::dataTableOutput("table"), width = 12)))
+                box(status = "primary",
+                  DT::dataTableOutput("table"), width = 12)))
     )
   )
 )

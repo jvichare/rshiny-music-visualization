@@ -48,9 +48,14 @@ shinyServer(function(input, output) {
     datatable(music_table, rownames = F)
   })
   
-  # datatable containing the median values to achieve 50th percentile popularity in each genre
+  # data table containing the median values to achieve 50th percentile popularity in each genre
   output$threshold <- DT::renderDataTable({
     datatable(median_stats, rownames = F)
+  })
+  
+  # data table containing the correlation between specified variable to popularity
+  output$corr_tbl <- DT::renderDataTable({
+    datatable(corr_df, rownames = T)
   })
   
   
