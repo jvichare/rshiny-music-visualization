@@ -1,12 +1,3 @@
-#
-# This is the user-interface definition of a Shiny web application. You can
-# run the application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-# 
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
 library(shinydashboard)
 library(plotly)
@@ -14,15 +5,15 @@ library(ggplot2)
 library(DT)
 
 
-# Define UI for application that draws a histogram
 dashboardPage(skin = "green",
   
   dashboardHeader(
     title = 'Spotify Popularity Analysis',
-    titleWidth = 300
+    titleWidth = 265 # have to increase the width to display the entire title
   ),
+  
   dashboardSidebar(
-    width = 300,
+    width = 265,
     sidebarUserPanel("Josh Vichare",
                      image = "https://i.imgur.com/FqDKSj6.jpg"),
     sidebarMenu(
@@ -53,6 +44,8 @@ dashboardPage(skin = "green",
       tabItem(tabName = "threed",
               fluidRow(
                 box(plotlyOutput("threeDscatter"), height = 680, width = 8),
+                
+                # box allowing for user-input for the scatter plot with defaults set
                 box(selectizeInput(inputId = "scatter_var1",
                                    label = "Select X-axis Variable",
                                    choices = options,
