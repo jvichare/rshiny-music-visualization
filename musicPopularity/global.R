@@ -44,3 +44,17 @@ median_stats = rbind(metal_median, rap_median, hip_hop_median, indie_pop_median,
 median_stats = median_stats %>% 
   group_by(genre) %>%
   summarise_if(is.numeric, median)
+
+
+# Displaying a table of the correlation values to give the user an idea of what variables would display
+# the largest change for the scatter plot page
+corr_values = c(cor(all_music$duration_ms, all_music$popularity), cor(all_music$acousticness, all_music$popularity), 
+                cor(all_music$danceability, all_music$popularity), cor(all_music$energy, all_music$popularity), 
+                cor(all_music$instrumentalness, all_music$popularity), cor(all_music$liveness, all_music$popularity), 
+                cor(all_music$loudness, all_music$popularity), cor(all_music$valence, all_music$popularity), 
+                cor(all_music$speechiness, all_music$popularity))
+
+corr_rnames = c('Duration', 'Acousticness', 'Danceability', 'Energy', 'Instrumentalness', 'Liveness',
+                'Loudness', 'Valence', 'Speechiness')
+
+corr_df = data.frame(Correlation = corr_values, row.names = corr_rnames)
