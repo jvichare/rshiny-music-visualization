@@ -92,7 +92,7 @@ dashboardPage(skin = "green",
               fluidRow(
                 selectizeInput(inputId = "plot_var", 
                                    label = "Select Variable to Display", 
-                                   choices = options, 
+                                   choices = options_2d, 
                                    selected = 'popularity'), align = 'center')
               ),
       
@@ -105,11 +105,11 @@ dashboardPage(skin = "green",
                 box(status = "primary",
                   selectizeInput(inputId = "scatter_var1",
                                    label = "Select X-axis Variable",
-                                   choices = options,
+                                   choices = options_3d,
                                    selected = "danceability"),
                     selectizeInput(inputId = "scatter_var2",
                                    label = "Select Y-axis Variable",
-                                   choices = options,
+                                   choices = options_3d,
                                    selected = "acousticness"), width = 4),
                 
                 # allows the user to display correlation values, for better experience with
