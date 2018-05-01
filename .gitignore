@@ -3,3 +3,7 @@
 
 # ignore rhistory
 *.Rhistory
+
+# ignoring rsconnect
+/musicPopularity/rsconnect
+/musicPopularity/rsconnect/*
