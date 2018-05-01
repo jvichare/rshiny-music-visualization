@@ -18,8 +18,8 @@ dashboardPage(skin = "green",
                      image = "https://i.imgur.com/FqDKSj6.jpg"),
     sidebarMenu(
       menuItem("Introduction to Dataset", tabName = "intro", icon = icon("question-circle")),
-      menuItem("Comparitive Plots", tabName = "twod", icon = icon("clone")),
-      menuItem("Interactive Scatter Plot", tabName = "threed", icon = icon("circle")),
+      menuItem("Comparitive Plots", tabName = "two_d", icon = icon("clone")),
+      menuItem("Interactive Scatter Plot", tabName = "three_d", icon = icon("circle")),
       menuItem("Threshold Values", tabName = "stats", icon = icon("calculator")),
       menuItem("Dataset", tabName = "table", icon = icon("database"))
     )
@@ -82,7 +82,7 @@ dashboardPage(skin = "green",
                                  onclick ="window.open('http://spotipy.readthedocs.io/en/latest/', '_blank')"))
               )),
       
-      tabItem(tabName = "twod",
+      tabItem(tabName = "two_d",
               fluidRow(
                 box(status = "success",
                   plotlyOutput("boxplot"), height = 450),
@@ -96,7 +96,7 @@ dashboardPage(skin = "green",
                                    selected = 'popularity'), align = 'center')
               ),
       
-      tabItem(tabName = "threed",
+      tabItem(tabName = "three_d",
               fluidRow(
                 box(status = "success",
                   plotlyOutput("threeDscatter"), height = 700, width = 8),
