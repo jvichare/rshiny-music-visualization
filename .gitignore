@@ -7,3 +7,7 @@
 # ignoring rsconnect
 /musicPopularity/rsconnect
 /musicPopularity/rsconnect/*
+
+# ignoring ipynb checkpoints
+/.ipynb_checkpoints
+/.ipynb_checkpoints/*
