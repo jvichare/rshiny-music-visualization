@@ -13,24 +13,26 @@ shinyServer(function(input, output) {
   
   # plotly box and whisker plot with user input for the y-axis
   output$boxplot <- renderPlotly({
-    plot_ly(all_music, y = ~get(input$plot_var), color = ~genre, type = "box") %>% 
+    plot_ly(all_music, y = ~get(input$plot_var), color = ~genre, colors = "Set3", type = "box") %>% 
       layout(yaxis = list(title = input$plot_var))
   })
   
-  # ggplot density plot with user input for the axis variable
+  # plotly density plot with user input for the axis variable
   output$densityplot <- renderPlotly({
     dens = ggplot(data = all_music, aes_string(input$plot_var)) + 
-      geom_density(alpha = 0.3, aes(fill = genre, color = genre)) + 
+      geom_density(alpha = 0.6, aes(fill = genre, color = genre)) + 
+      scale_fill_brewer(palette = "Set3") +
+      scale_color_brewer(palette = "Set3") +
       xlab(lab = input$plot_var) + 
-      theme(legend.title=element_blank())
+      theme(legend.title=element_blank()) 
     
-    ggplotly(dens)
+    ggplotly(dens) # couldn't directly create density plot in plotly, just converted ggplot object to plotly
   })
   
   # plotly 3d scatter plot, taking user input for the x and y-axis, keeping z-axis fixed on popularity
   output$threeDscatter <- renderPlotly({
     plot_ly(subset_all_music, x = ~get(input$scatter_var1), y = ~get(input$scatter_var2), z = ~popularity,
-            color = ~genre, key = ~full_name, height = 650, marker = list(size = 4),
+            color = ~genre, colors = "Set3", key = ~full_name, height = 650, marker = list(size = 4),
             text = ~paste('Artist:', artist_name, '<br>Song:', song_name, '<br>Popularity:', popularity)) %>%
       add_markers() %>%
       layout(scene = list(zaxis = list(title = 'Popularity'),
@@ -59,9 +61,6 @@ shinyServer(function(input, output) {
   output$corr_tbl <- DT::renderDataTable({
     datatable(corr_df, rownames = T)
   })
-  
-  
-  
-}
-)
 
+  }
+)
