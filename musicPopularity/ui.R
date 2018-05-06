@@ -14,7 +14,7 @@ dashboardPage(skin = "green",
   
   dashboardSidebar(
     width = 260,
-    sidebarUserPanel("Josh Vichare",
+    sidebarUserPanel("Josh Vichare", subtitle = "joshvichare@gmail.com",
                      image = "https://i.imgur.com/FqDKSj6.jpg"),
     sidebarMenu(
       menuItem("Introduction to Dataset", tabName = "intro", icon = icon("question-circle")),
